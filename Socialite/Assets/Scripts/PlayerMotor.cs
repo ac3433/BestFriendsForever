@@ -19,15 +19,13 @@ public class PlayerMotor : MonoBehaviour {
 
     void PerformMovement()
     {
-        if(velocity != Vector2.zero)
-        {
-            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-        }
+        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
 
     }
 
     public void Move(Vector2 velocity)
     {
         this.velocity = velocity;
+
     }
 }

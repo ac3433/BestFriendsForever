@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         float _xMov = Input.GetAxisRaw("Horizontal");
         float _yMov = Input.GetAxisRaw("Vertical");
 

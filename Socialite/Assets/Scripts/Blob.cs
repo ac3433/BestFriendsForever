@@ -33,6 +33,7 @@ public class Blob : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
+
         blob.HateColor = FindColor(colorHate.ToString());
         blob.FavoriteColor = FindColor(colorFavorite.ToString());
         blob.Speed = speed;
@@ -45,7 +46,8 @@ public class Blob : MonoBehaviour {
         if(blob.Life != 0)
         {
             blob.Life -= decayRate;
-            //rb.MovePosition(blob.MovePos(rb.position, targetCharacter.position, playerColor.GetColor()) * Time.fixedDeltaTime);
+            Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerColor.GetColor());
+            rb.MovePosition( velocity );
 
         }
 

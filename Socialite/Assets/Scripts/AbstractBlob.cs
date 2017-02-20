@@ -24,19 +24,19 @@ public abstract class AbstractBlob {
 
     public virtual Vector2 MovePos(Vector2 currentPos, Vector2 targetPos, Color targetColor)
     {
-        if (favoriteColor.ToString().Equals(targetColor.ToString()))
+        if (favoriteColor.Equals(targetColor))
         {
-            return Vector2.MoveTowards(currentPos, targetPos, speed);
+            return Vector2.MoveTowards(currentPos, targetPos, speed * Time.fixedDeltaTime);
         }
-        else if (hateColor.ToString().Equals(targetColor.ToString()))
+        else if (hateColor.Equals(targetColor))
         {
             Vector2 direction = targetPos - currentPos;
             Vector2 pointMove = currentPos - direction;
 
-            return Vector2.MoveTowards(currentPos, pointMove, speed);
+            return Vector2.MoveTowards(currentPos, pointMove, speed * Time.fixedDeltaTime);
         }
         else
-            return Vector2.zero;
+            return currentPos;
     }
 
 
