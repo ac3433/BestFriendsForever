@@ -20,9 +20,9 @@ public class Blob : MonoBehaviour {
     private float life = 5f;
     [SerializeField]
     private float decayRate = 0f;
-    [SerializeField]
+
     private Rigidbody2D targetCharacter;
-    [SerializeField]
+
     private PlayerColor playerColor;
 
     private AbstractBlob blob;
@@ -30,7 +30,10 @@ public class Blob : MonoBehaviour {
     private Rigidbody2D rb;
 
 	void Start () {
+        GameObject player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        playerColor = player.GetComponent<PlayerColor>();
+        targetCharacter = player.GetComponent<Rigidbody2D>();
 
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
 
