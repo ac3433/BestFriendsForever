@@ -2,18 +2,14 @@
 using System.Collections;
 
 public enum Colors { Red, Blue, Green}
-public enum ColorHate { Red, Blue, Green }
-public enum ColorFavorite { Red, Blue, Green }
+//public enum ColorHate { Red, Blue, Green }
+//public enum ColorFavorite { Red, Blue, Green }
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Blob : MonoBehaviour {
 
     [SerializeField]
     private Colors blobColor;
-    [SerializeField]
-    private ColorHate colorHate;
-    [SerializeField]
-    private ColorFavorite colorFavorite;
     [SerializeField]
     private float speed = 2f;
     [SerializeField]
@@ -23,7 +19,7 @@ public class Blob : MonoBehaviour {
 
     private Rigidbody2D targetCharacter;
 
-    private PlayerColor playerColor;
+    private PlayerStatus playerStatus;
 
     private AbstractBlob blob;
 
@@ -32,13 +28,10 @@ public class Blob : MonoBehaviour {
 	void Start () {
         GameObject player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        playerColor = player.GetComponent<PlayerColor>();
+        playerStatus = player.GetComponent<PlayerStatus>();
         targetCharacter = player.GetComponent<Rigidbody2D>();
 
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
-
-        blob.HateColor = FindColor(colorHate.ToString());
-        blob.FavoriteColor = FindColor(colorFavorite.ToString());
         blob.Speed = speed;
         blob.Life = life;
 
@@ -46,15 +39,11 @@ public class Blob : MonoBehaviour {
 	
 	void FixedUpdate()
     {
-        if(blob.Life != 0)
+        if(blob.Life > 0)
         {
-            blob.Life -= decayRate;
-            Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerColor.GetColor());
+            Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
             rb.MovePosition( velocity );
-
         }
-
-
 
     }
 
@@ -67,6 +56,7 @@ public class Blob : MonoBehaviour {
     public void SetColor(Colors color)
     {
         this.blobColor = color;
+        blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
     }
 
     public void SetSpeed(float speed)
@@ -80,7 +70,7 @@ public class Blob : MonoBehaviour {
     }
 
     //temporary leaving this function here
-    private Color FindColor(string color)
+    public Color FindColor(string color)
     {
         if (color.ToLower().Equals("red"))
             return Color.red;
@@ -91,5 +81,10 @@ public class Blob : MonoBehaviour {
         else
             return Color.clear;
 
+    }
+
+    public void SetLife(float life)
+    {
+        blob.Life = life;
     }
 }

@@ -6,17 +6,28 @@ public class AbstractBlobFactory {
 
 	public AbstractBlob GetBlob(string name)
     {
+        BlobFactory blobFactory = new BlobFactory();
+        AbstractBlob blob;
         if (name.ToLower().Equals("blue"))
         {
-            return new BlobFactory().MakeBlueBlob();
+            blob = blobFactory.MakeBlueBlob();
+            blob.HateColor = Color.red;
+            blob.FavoriteColor = Color.blue;
+            return blob;
         }
         else if (name.ToLower().Equals("red"))
         {
-            return new BlobFactory().MakeRedBlob();
+            blob = blobFactory.MakeRedBlob();
+            blob.HateColor = Color.green;
+            blob.FavoriteColor = Color.red;
+            return blob;
         }
         else if (name.ToLower().Equals("green"))
         {
-            return new BlobFactory().MakeGreenBlob();
+            blob = blobFactory.MakeRedBlob();
+            blob.HateColor = Color.blue;
+            blob.FavoriteColor = Color.green;
+            return blob;
         }
 
         return null;
