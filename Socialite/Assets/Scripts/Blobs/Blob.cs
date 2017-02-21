@@ -11,11 +11,15 @@ public class Blob : MonoBehaviour {
     [SerializeField]
     private Colors blobColor;
     [SerializeField]
-    private float speed = 2f;
+    private float runAwaySpeed = 2f;
+    [SerializeField]
+    private float runTowardSpeed = 3f;
     [SerializeField]
     private float life = 5f;
     [SerializeField]
     private float decayRate = 0f;
+    [SerializeField]
+    private float healthRegen = 0f;
 
     private Rigidbody2D targetCharacter;
 
@@ -32,7 +36,6 @@ public class Blob : MonoBehaviour {
         targetCharacter = player.GetComponent<Rigidbody2D>();
 
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
-        blob.Speed = speed;
         blob.Life = life;
 
 	}
@@ -41,8 +44,20 @@ public class Blob : MonoBehaviour {
     {
         if(blob.Life > 0)
         {
+            if (blob.MovingForward(playerStatus.GetColor()))
+                blob.Speed = runTowardSpeed;
+            else
+                blob.Speed = runAwaySpeed;
+
             Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
             rb.MovePosition( velocity );
+
+            blob.Life -= decayRate * Time.fixedDeltaTime;
+            blob.Life += healthRegen * Time.fixedDeltaTime;
+        }
+        else
+        {
+            enabled = false;
         }
 
     }
@@ -61,7 +76,7 @@ public class Blob : MonoBehaviour {
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed;
+        blob.Speed = speed;
     }
 
     public void SetLifeDecay(float decayRate)
@@ -86,5 +101,10 @@ public class Blob : MonoBehaviour {
     public void SetLife(float life)
     {
         blob.Life = life;
+    }
+
+    public void SetHealthRegen(float regen)
+    {
+        healthRegen = regen;
     }
 }

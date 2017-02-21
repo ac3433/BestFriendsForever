@@ -11,10 +11,16 @@ public class BlobGeneraator : MonoBehaviour {
     [SerializeField]
     private float life = 5f;
 
+    [Serializable]
+    public struct Sprites { public string name; public Sprite sprite; }
+
+    public Sprites[] spriteColor;
+
     private float countdown;
     private Colors[] colors;
     private List<Transform> spawnPosition;
     private List<GameObject> childList;
+    private Dictionary<string, Sprite> colorList;
     void Start()
     {
         countdown = Time.time + spawnRate;
@@ -23,8 +29,9 @@ public class BlobGeneraator : MonoBehaviour {
 
         spawnPosition = new List<Transform>();
         childList = new List<GameObject>();
+        colorList = new Dictionary<string, Sprite>();
 
-        foreach(GameObject obj in  GameObject.FindGameObjectsWithTag("SpawnAI"))
+        foreach (GameObject obj in  GameObject.FindGameObjectsWithTag("SpawnAI"))
         {
             spawnPosition.Add(obj.transform);
         }
@@ -32,7 +39,10 @@ public class BlobGeneraator : MonoBehaviour {
         foreach (Transform t in transform)
             childList.Add(t.gameObject);
 
-        
+        foreach(Sprites sc in spriteColor)
+        {
+            colorList.Add(sc.name, sc.sprite);
+        }
     }
 
     void Update()
@@ -53,11 +63,12 @@ public class BlobGeneraator : MonoBehaviour {
 
         GameObject child = childList[0];
         Blob blob = child.GetComponent<Blob>();
+        SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
 
-        var colors = (Colors[])Enum.GetValues(typeof(Colors));
         Colors colorPick = colors[UnityEngine.Random.Range(0, colors.Length)];
         blob.SetColor(colorPick);
-
+        sr.sprite = colorList[colorPick.ToString().ToLower()];//this need to be moved to blob.cs
+        
         child.transform.position = spawnPosition[randomPosition].position;
         blob.SetLifeDecay(decayLifeRateUponSpawn);
         blob.SetLife(life);

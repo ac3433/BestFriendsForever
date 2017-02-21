@@ -39,5 +39,14 @@ public abstract class AbstractBlob {
             return currentPos;
     }
 
+    public bool MovingForward(Color targetColor)
+    {
+        if (favoriteColor.Equals(targetColor))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
 
 }
