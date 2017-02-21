@@ -1,0 +1,264 @@
+fileFormatVersion: 2
+guid: cb23d109668dd8345bc533fa0a4193b5
+timeCreated: 1487658611
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Acquaintance-Aura-Spritesheet_0
+    21300002: Acquaintance-Aura-Spritesheet_1
+    21300004: Acquaintance-Aura-Spritesheet_2
+    21300006: Acquaintance-Aura-Spritesheet_3
+    21300008: Acquaintance-Aura-Spritesheet_4
+    21300010: Acquaintance-Aura-Spritesheet_5
+    21300012: Acquaintance-Aura-Spritesheet_6
+    21300014: Acquaintance-Aura-Spritesheet_7
+    21300016: Acquaintance-Aura-Spritesheet_8
+    21300018: Acquaintance-Aura-Spritesheet_9
+    21300020: Acquaintance-Aura-Spritesheet_10
+    21300022: Acquaintance-Aura-Spritesheet_11
+    21300024: Acquaintance-Aura-Spritesheet_12
+    21300026: Acquaintance-Aura-Spritesheet_13
+    21300028: Acquaintance-Aura-Spritesheet_14
+    21300030: Acquaintance-Aura-Spritesheet_15
+    21300032: Acquaintance-Aura-Spritesheet_16
+    21300034: Acquaintance-Aura-Spritesheet_17
+    21300036: Acquaintance-Aura-Spritesheet_18
+    21300038: Acquaintance-Aura-Spritesheet_19
+    21300040: Acquaintance-Aura-Spritesheet_20
+    21300042: Acquaintance-Aura-Spritesheet_21
+    21300044: Acquaintance-Aura-Spritesheet_22
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 128
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 467
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 467
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 467
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 466
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 466
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 465
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 2527
+        y: 462
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 2937
+        y: 462
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 3348
+        y: 463
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 3786
+        y: 461
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 35
+        width: 410
+        height: 410
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 50
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 50
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Acquaintance-Aura-Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 50
+        width: 393
+        height: 393
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
