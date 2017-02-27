@@ -44,7 +44,7 @@ public class Blob : MonoBehaviour {
     }
 
 
-    public Colors GetColors()
+    public Colors GetColor()
     {
         return blobColor;
     }
