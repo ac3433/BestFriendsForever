@@ -4,11 +4,6 @@ using System.Collections.Generic;
 
 public class PlayerStatus : MonoBehaviour {
 
-    [SerializeField]
-    private float health = 5f;
-    [SerializeField]
-    private float decayRate = 0f;
-
     private Color color;
 
     public Sprite[] sprite;
@@ -47,16 +42,6 @@ public class PlayerStatus : MonoBehaviour {
             GetComponent<SpriteRenderer>().sprite = sprite[colorPos];
         }
 
-	    if(health > 0)
-        {
-            health -= decayRate * Time.fixedDeltaTime;
-
-        }
-        else
-        {
-            GetComponent<PlayerController>().enabled = false;
-            enabled = false;
-        }
 	}
 
     public Color GetColor()
@@ -64,14 +49,5 @@ public class PlayerStatus : MonoBehaviour {
         return color;
     }
 
-    public float GetHealth()
-    {
-        return health;
-    }
-
-    public void SetDecayRate(float rate)
-    {
-        decayRate = rate;
-    }
 
 }

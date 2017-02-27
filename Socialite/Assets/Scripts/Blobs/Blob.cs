@@ -2,8 +2,7 @@
 using System.Collections;
 
 public enum Colors { Red, Blue, Green}
-//public enum ColorHate { Red, Blue, Green }
-//public enum ColorFavorite { Red, Blue, Green }
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Blob : MonoBehaviour {
@@ -14,12 +13,6 @@ public class Blob : MonoBehaviour {
     private float runAwaySpeed = 2f;
     [SerializeField]
     private float runTowardSpeed = 3f;
-    [SerializeField]
-    private float life = 5f;
-    [SerializeField]
-    private float decayRate = 0f;
-    [SerializeField]
-    private float healthRegen = 0f;
 
     private Rigidbody2D targetCharacter;
 
@@ -36,30 +29,18 @@ public class Blob : MonoBehaviour {
         targetCharacter = player.GetComponent<Rigidbody2D>();
 
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
-        blob.Life = life;
-
 	}
 	
 	void FixedUpdate()
     {
-        if(blob.Life > 0)
-        {
-            if (blob.MovingForward(playerStatus.GetColor()))
-                blob.Speed = runTowardSpeed;
-            else
-                blob.Speed = runAwaySpeed;
 
-            Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
-            rb.MovePosition( velocity );
-
-            blob.Life -= decayRate * Time.fixedDeltaTime;
-            blob.Life += healthRegen * Time.fixedDeltaTime;
-        }
+        if (blob.MovingForward(playerStatus.GetColor()))
+            blob.Speed = runTowardSpeed;
         else
-        {
-            enabled = false;
-        }
+            blob.Speed = runAwaySpeed;
 
+        Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
+        rb.MovePosition( velocity );
     }
 
 
@@ -74,14 +55,13 @@ public class Blob : MonoBehaviour {
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
     }
 
-    public void SetSpeed(float speed)
+    public void SetTowardSpeed(float speed)
     {
-        blob.Speed = speed;
+        runTowardSpeed = speed;
     }
-
-    public void SetLifeDecay(float decayRate)
+    public void SetAwaySpeed(float speed)
     {
-        this.decayRate = decayRate;
+        runAwaySpeed = speed;
     }
 
     //temporary leaving this function here
@@ -98,13 +78,4 @@ public class Blob : MonoBehaviour {
 
     }
 
-    public void SetLife(float life)
-    {
-        blob.Life = life;
-    }
-
-    public void SetHealthRegen(float regen)
-    {
-        healthRegen = regen;
-    }
 }

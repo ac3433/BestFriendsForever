@@ -7,34 +7,30 @@ public class BlobGeneraator : MonoBehaviour {
     [SerializeField]
     private float spawnRate= 5f;
     [SerializeField]
-    private float decayLifeRateUponSpawn = 1f;
-    [SerializeField]
-    private float life = 5f;
-
+    private Transform[] spawnPosition;
     [Serializable]
-    public struct Sprites { public string name; public Sprite sprite; }
+    public struct Sprites { public string name; public float speedToward; public float speedAway; public Sprite sprite; }
 
     public Sprites[] spriteColor;
 
     private float countdown;
     private Colors[] colors;
-    private List<Transform> spawnPosition;
+    
     private List<GameObject> childList;
     private Dictionary<string, Sprite> colorList;
+    private Dictionary<string, float> colorSpeedToward;
+    private Dictionary<string, float> colorSpeedAway;
+
     void Start()
     {
         countdown = Time.time + spawnRate;
 
         colors = (Colors[])Enum.GetValues(typeof(Colors));
 
-        spawnPosition = new List<Transform>();
         childList = new List<GameObject>();
         colorList = new Dictionary<string, Sprite>();
-
-        foreach (GameObject obj in  GameObject.FindGameObjectsWithTag("SpawnAI"))
-        {
-            spawnPosition.Add(obj.transform);
-        }
+        colorSpeedAway = new Dictionary<string, float>();
+        colorSpeedToward = new Dictionary<string, float>();
 
         foreach (Transform t in transform)
             childList.Add(t.gameObject);
@@ -42,6 +38,8 @@ public class BlobGeneraator : MonoBehaviour {
         foreach(Sprites sc in spriteColor)
         {
             colorList.Add(sc.name, sc.sprite);
+            colorSpeedAway.Add(sc.name, sc.speedAway);
+            colorSpeedToward.Add(sc.name, sc.speedToward);
         }
     }
 
@@ -59,19 +57,17 @@ public class BlobGeneraator : MonoBehaviour {
         if (childList.Count <= 0)
             return;
 
-        int randomPosition = UnityEngine.Random.Range(0, spawnPosition.Count);
-
         GameObject child = childList[0];
         Blob blob = child.GetComponent<Blob>();
         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
 
         Colors colorPick = colors[UnityEngine.Random.Range(0, colors.Length)];
         blob.SetColor(colorPick);
+        blob.SetAwaySpeed(colorSpeedAway[colorPick.ToString().ToLower()]);
+        blob.SetTowardSpeed(colorSpeedToward[colorPick.ToString().ToLower()]);
         sr.sprite = colorList[colorPick.ToString().ToLower()];//this need to be moved to blob.cs
         
-        child.transform.position = spawnPosition[randomPosition].position;
-        blob.SetLifeDecay(decayLifeRateUponSpawn);
-        blob.SetLife(life);
+        child.transform.position = new Vector2(UnityEngine.Random.Range(spawnPosition[0].position.x, spawnPosition[1].position.x), UnityEngine.Random.Range(spawnPosition[0].position.y, spawnPosition[1].position.y));
         
         child.SetActive(true);
         childList.RemoveAt(0);
