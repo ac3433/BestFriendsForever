@@ -14,6 +14,8 @@ public class Score : MonoBehaviour {
 
     private Dictionary<string, float> multipler;
 
+    public UnityEngine.UI.Text text;//feeling lazy
+
     void Start () {
         score = 0;
         multipler = new Dictionary<string, float>();
@@ -27,7 +29,7 @@ public class Score : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	
+        text.text = string.Format("Score: {0}", score);
 	}
 
     public void ScoreIt(int number, Color color)

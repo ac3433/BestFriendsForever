@@ -49,12 +49,19 @@ public class CloseAura : MonoBehaviour {
     {
         if (objsInCircle.Count != 0)
         {
+            Debug.Log(objsInCircle.Count);
             if (objsInCircle[0].GetComponent<Blob>().GetColor().Equals(status.GetColor()))
             {
+                
                 if (countdown < Time.time)
                 {
-
+                    score.ScoreIt(CountFilterColor(status.GetColor()), status.GetColor());
                     countdown = Time.time + scoreTimer;
+
+                    foreach(GameObject obj in FilterColorGameObject(status.GetColor()))
+                    {
+                        Destroy(obj);
+                    }
                 }
             }
             else
@@ -83,10 +90,21 @@ public class CloseAura : MonoBehaviour {
         foreach (GameObject obj in objsInCircle)
         {
             Blob b = obj.GetComponent<Blob>();
-            if (!b.GetColor().Equals(color))
+            if (b.GetColo().Equals(color))
                 o.Add(obj);
         }
 
         return o;
     }
+    //these below is terrible
+    public int CountFilterColor(Color color)
+    {
+        return FilterColorGameObject(color).Count;
+    }
+
+    public GameObject GetFilterObj(Color color, int pos)
+    {
+        return FilterColorGameObject(color)[pos];
+    }
+
 }

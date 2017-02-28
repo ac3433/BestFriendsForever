@@ -9,12 +9,12 @@ public class PlayerStatus : MonoBehaviour {
     public Sprite[] sprite;
     private int colorPos = 0;
 
-    private CloseAura aura;
+    private AcquaintanceAura aura;
 
     void Start()
     {
         color = Color.blue;
-        aura = GameObject.Find("Player/Close-Aura").GetComponent<CloseAura>();
+        aura = GameObject.FindGameObjectWithTag("Aura").GetComponent<AcquaintanceAura>();
     }
 	
     //very lazy programming here
@@ -52,23 +52,24 @@ public class PlayerStatus : MonoBehaviour {
         return color;
     }
 
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if(other.gameObject.tag.Equals("AI"))
-    //    {
-    //        Blob blob = other.gameObject.GetComponent<Blob>();
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag.Equals("AI"))
+        {
+            Blob blob = other.gameObject.GetComponent<Blob>();
 
-    //        if(blob.GetColor().Equals(Color.red) && color.Equals(Color.red))
-    //        {
-    //            List<GameObject> o = aura.FilterColorGameObject(Color.red);
+            if (blob.GetColo().Equals(Color.red) && color.Equals(Color.blue))
+            {
+                
+                List<GameObject> o = aura.FilterColorGameObject(Color.red);
 
-    //            foreach(GameObject obj in o)
-    //            {
-    //                Blob ai = obj.GetComponent<Blob>();
-    //                ai.ForceAway(true);
-    //            }
-    //        }
-    //    }
-    //}
+                foreach (GameObject obj in o)
+                {
+                    Blob ai = obj.GetComponent<Blob>();
+                    ai.ForceAway(true);
+                }
+            }
+        }
+    }
 
 }

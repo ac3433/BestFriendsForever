@@ -60,7 +60,7 @@ public class AcquaintanceAura : MonoBehaviour {
         foreach (GameObject obj in objsInCircle)
         {
             Blob b = obj.GetComponent<Blob>();
-            if (!b.GetColor().Equals(color))
+            if (!b.GetColo().Equals(color))
                 o.Add(obj);
         }
 

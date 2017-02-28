@@ -29,7 +29,7 @@ public class Blob : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         playerStatus = player.GetComponent<PlayerStatus>();
         targetCharacter = player.GetComponent<Rigidbody2D>();
-        countdown = 5;
+        countdown = 8;
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
 	}
 	
@@ -44,17 +44,17 @@ public class Blob : MonoBehaviour {
         Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
         rb.MovePosition( velocity );
 
-        //if(blob.ForceAway)
-        //{
-        //    if (countdown < 0)
-        //    {
-        //        blob.ForceAway = false;
-        //        countdown = 5;
-        //    }
-        //    else
-        //        countdown -= Time.fixedDeltaTime * 5;
+        if (blob.ForceAway)
+        {
+            if (countdown < 0)
+            {
+                blob.ForceAway = false;
+                countdown = 8;
+            }
+            else
+                countdown -= Time.fixedDeltaTime * 2;
 
-        //}
+        }
 
     }
 
@@ -93,9 +93,14 @@ public class Blob : MonoBehaviour {
 
     }
 
-    //public void ForceAway(bool away)
-    //{
-    //    blob.ForceAway = away;
-    //}
+    public void ForceAway(bool away)
+    {
+        blob.ForceAway = away;
+    }
+
+    public Color GetColo()
+    {
+        return blob.BlobColor;
+    }
 
 }
