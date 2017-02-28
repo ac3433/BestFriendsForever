@@ -18,8 +18,10 @@ public class AbstractBlobFactory {
         else if (name.ToLower().Equals("green"))
         {
             GreenBlob blob = (GreenBlob)blobFactory.MakeGreenBlob();
+            CloseAura aura = GameObject.Find("Player/Close-Aura").GetComponent<CloseAura>();//to be removed
+            blob.AddAuraScript(aura);
 
-            return blobFactory.MakeGreenBlob();
+            return blob;
         }
 
         return null;

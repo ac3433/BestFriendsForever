@@ -9,9 +9,12 @@ public class PlayerStatus : MonoBehaviour {
     public Sprite[] sprite;
     private int colorPos = 0;
 
+    private CloseAura aura;
+
     void Start()
     {
         color = Color.blue;
+        aura = GameObject.Find("Player/Close-Aura").GetComponent<CloseAura>();
     }
 	
     //very lazy programming here
@@ -49,5 +52,22 @@ public class PlayerStatus : MonoBehaviour {
         return color;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag.Equals("AI"))
+        {
+            Blob blob = other.gameObject.GetComponent<Blob>();
+
+            if(blob.GetColor().Equals(Color.red) && color.Equals(Color.red))
+            {
+                List<GameObject> o = aura.FilterColorGameObject(Color.red);
+
+                foreach(GameObject obj in o)
+                {
+                    
+                }
+            }
+        }
+    }
 
 }
