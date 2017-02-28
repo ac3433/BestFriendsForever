@@ -66,4 +66,14 @@ public class CloseAura : MonoBehaviour {
         else
             countdown = 0f;
     }
+
+    public GameObject GetGameObjectInCircle(int pos)
+    {
+        return objsInCircle[pos];
+    }
+
+    public int GetGameObjectsCount()
+    {
+        return objsInCircle.Count;
+    }
 }

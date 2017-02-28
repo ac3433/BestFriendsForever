@@ -17,6 +17,8 @@ public class AbstractBlobFactory {
         }
         else if (name.ToLower().Equals("green"))
         {
+            GreenBlob blob = (GreenBlob)blobFactory.MakeGreenBlob();
+
             return blobFactory.MakeGreenBlob();
         }
 
