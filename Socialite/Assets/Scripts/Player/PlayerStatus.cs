@@ -9,14 +9,12 @@ public class PlayerStatus : MonoBehaviour {
     public Sprite[] sprite;
     private int colorPos = 0;
 
-    private AcquaintanceAura aura;
-    private CloseAura close;
+    private CloseAura aura;
 
     void Start()
     {
         color = Color.blue;
-        aura = GameObject.FindGameObjectWithTag("Aura").GetComponent<AcquaintanceAura>();
-        close = GameObject.FindGameObjectWithTag("CloseAura").GetComponent<CloseAura>();
+        aura = GameObject.Find("Player/Close-Aura").GetComponent<CloseAura>();
     }
 	
     //very lazy programming here
@@ -45,7 +43,6 @@ public class PlayerStatus : MonoBehaviour {
             else if (colorPos == 2)
                 color = Color.red;
             GetComponent<SpriteRenderer>().sprite = sprite[colorPos];
-            close.countdown = 0;
         }
 
 	}
@@ -55,24 +52,23 @@ public class PlayerStatus : MonoBehaviour {
         return color;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag.Equals("AI"))
-        {
-            Blob blob = other.gameObject.GetComponent<Blob>();
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if(other.gameObject.tag.Equals("AI"))
+    //    {
+    //        Blob blob = other.gameObject.GetComponent<Blob>();
 
-            if (blob.GetColo().Equals(Color.red) && color.Equals(Color.blue))
-            {
-                
-                List<GameObject> o = aura.FilterColorGameObject(Color.red);
+    //        if(blob.GetColor().Equals(Color.red) && color.Equals(Color.red))
+    //        {
+    //            List<GameObject> o = aura.FilterColorGameObject(Color.red);
 
-                foreach (GameObject obj in o)
-                {
-                    Blob ai = obj.GetComponent<Blob>();
-                    ai.ForceAway(true);
-                }
-            }
-        }
-    }
+    //            foreach(GameObject obj in o)
+    //            {
+    //                Blob ai = obj.GetComponent<Blob>();
+    //                ai.ForceAway(true);
+    //            }
+    //        }
+    //    }
+    //}
 
 }

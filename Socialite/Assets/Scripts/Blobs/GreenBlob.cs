@@ -7,7 +7,7 @@ public class GreenBlob : AbstractBlob
     private AcquaintanceAura close;
 
     private int assignedTarget = -1;
-    private int knownTargets = -1;
+    private int knownTargets = 0;
 
     public GreenBlob(Color blobColor) : base(blobColor)
     {

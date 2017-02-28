@@ -13,6 +13,9 @@ public class Blob : MonoBehaviour {
     private float runAwaySpeed = 2f;
     [SerializeField]
     private float runTowardSpeed = 3f;
+	[SerializeField]
+	private RuntimeAnimatorController blobController;
+	Animator bC;
 
     private Rigidbody2D targetCharacter;
 
@@ -29,32 +32,36 @@ public class Blob : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         playerStatus = player.GetComponent<PlayerStatus>();
         targetCharacter = player.GetComponent<Rigidbody2D>();
-        countdown = 8;
+        countdown = 5;
+		bC = GetComponent<Animator>();
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
 	}
 	
 	void FixedUpdate()
     {
 
-        if (blob.MovingForward(playerStatus.GetColor()))
-            blob.Speed = runTowardSpeed;
-        else
-            blob.Speed = runAwaySpeed;
+		if (blob.MovingForward (playerStatus.GetColor ())) {
+			blob.Speed = runTowardSpeed;
+			bC.SetFloat ("SpeedToward", runTowardSpeed);
+		} else {
+			blob.Speed = runAwaySpeed;
+			bC.SetFloat ("SpeedAway", runAwaySpeed);
+		}
 
         Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
         rb.MovePosition( velocity );
 
-        if (blob.ForceAway)
-        {
-            if (countdown < 0)
-            {
-                blob.ForceAway = false;
-                countdown = 8;
-            }
-            else
-                countdown -= Time.fixedDeltaTime * 2;
+        //if(blob.ForceAway)
+        //{
+        //    if (countdown < 0)
+        //    {
+        //        blob.ForceAway = false;
+        //        countdown = 5;
+        //    }
+        //    else
+        //        countdown -= Time.fixedDeltaTime * 5;
 
-        }
+        //}
 
     }
 
@@ -79,6 +86,12 @@ public class Blob : MonoBehaviour {
         runAwaySpeed = speed;
     }
 
+	public void SetAnimatorController(RuntimeAnimatorController _ctrl)
+	{
+		this.blobController = _ctrl;
+		blob = new AbstractBlobFactory ().GetBlob (blobController.ToString ());
+	}
+
     //temporary leaving this function here
     public Color FindColor(string color)
     {
@@ -93,14 +106,9 @@ public class Blob : MonoBehaviour {
 
     }
 
-    public void ForceAway(bool away)
-    {
-        blob.ForceAway = away;
-    }
-
-    public Color GetColo()
-    {
-        return blob.BlobColor;
-    }
+    //public void ForceAway(bool away)
+    //{
+    //    blob.ForceAway = away;
+    //}
 
 }

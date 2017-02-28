@@ -10,10 +10,10 @@ public class BlueBlob : AbstractBlob
 
     public override Vector2 MovePos(Vector2 currentPos, Vector2 targetPos, Color targetColor)
     {
-        if (ForceAway)
-        {
-            return MoveAway(currentPos, targetPos);
-        }
+        //if (ForceAway)
+        //{
+        //    return MoveAway(currentPos, targetPos);
+        //}
         //like
         if (targetColor.Equals(Color.blue))
         {

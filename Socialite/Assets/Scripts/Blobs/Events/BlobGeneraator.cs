@@ -9,7 +9,7 @@ public class BlobGeneraator : MonoBehaviour {
     [SerializeField]
     private Transform[] spawnPosition;
     [Serializable]
-    public struct Sprites { public string name; public float speedToward; public float speedAway; public Sprite sprite; }
+	public struct Sprites { public string name; public float speedToward; public float speedAway; public Sprite sprite; public RuntimeAnimatorController controller; }
 
     public Sprites[] spriteColor;
 
@@ -20,6 +20,7 @@ public class BlobGeneraator : MonoBehaviour {
     private Dictionary<string, Sprite> colorList;
     private Dictionary<string, float> colorSpeedToward;
     private Dictionary<string, float> colorSpeedAway;
+	private Dictionary<string, RuntimeAnimatorController> colorAnimController;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class BlobGeneraator : MonoBehaviour {
         colorList = new Dictionary<string, Sprite>();
         colorSpeedAway = new Dictionary<string, float>();
         colorSpeedToward = new Dictionary<string, float>();
+		colorAnimController = new Dictionary<string, RuntimeAnimatorController> ();
 
         foreach (Transform t in transform)
             childList.Add(t.gameObject);
@@ -40,6 +42,7 @@ public class BlobGeneraator : MonoBehaviour {
             colorList.Add(sc.name, sc.sprite);
             colorSpeedAway.Add(sc.name, sc.speedAway);
             colorSpeedToward.Add(sc.name, sc.speedToward);
+			colorAnimController.Add (sc.name, sc.controller);
         }
     }
 
@@ -60,12 +63,16 @@ public class BlobGeneraator : MonoBehaviour {
         GameObject child = childList[0];
         Blob blob = child.GetComponent<Blob>();
         SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+		Animator _ac = child.GetComponent<Animator>();
 
         Colors colorPick = colors[UnityEngine.Random.Range(0, colors.Length)];
         blob.SetColor(colorPick);
         blob.SetAwaySpeed(colorSpeedAway[colorPick.ToString().ToLower()]);
         blob.SetTowardSpeed(colorSpeedToward[colorPick.ToString().ToLower()]);
+		blob.SetAnimatorController(colorAnimController[colorPick.ToString().ToLower()]);
         sr.sprite = colorList[colorPick.ToString().ToLower()];//this need to be moved to blob.cs
+		_ac.runtimeAnimatorController = colorAnimController[colorPick.ToString().ToLower()];
+
         
         child.transform.position = new Vector2(UnityEngine.Random.Range(spawnPosition[0].position.x, spawnPosition[1].position.x), UnityEngine.Random.Range(spawnPosition[0].position.y, spawnPosition[1].position.y));
         
