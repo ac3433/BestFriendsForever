@@ -10,11 +10,13 @@ public class PlayerStatus : MonoBehaviour {
     private int colorPos = 0;
 
     private AcquaintanceAura aura;
+    private CloseAura close;
 
     void Start()
     {
         color = Color.blue;
         aura = GameObject.FindGameObjectWithTag("Aura").GetComponent<AcquaintanceAura>();
+        close = GameObject.FindGameObjectWithTag("CloseAura").GetComponent<CloseAura>();
     }
 	
     //very lazy programming here
@@ -43,6 +45,7 @@ public class PlayerStatus : MonoBehaviour {
             else if (colorPos == 2)
                 color = Color.red;
             GetComponent<SpriteRenderer>().sprite = sprite[colorPos];
+            close.countdown = 0;
         }
 
 	}

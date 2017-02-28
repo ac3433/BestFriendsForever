@@ -7,12 +7,14 @@ public class CloseAura : MonoBehaviour {
 
 
     [SerializeField]
-    private float scoreTimer = 1f;
+    private float scoreTimer = 10f;
 
     private PlayerStatus status;
     private List<GameObject> objsInCircle;
+    private List<GameObject> colorObj;
 
-    private float countdown = 0;
+    [HideInInspector]
+    public float countdown = 0;
     private Score score;
 
     void Start()
@@ -20,10 +22,9 @@ public class CloseAura : MonoBehaviour {
         GetComponent<CircleCollider2D>().isTrigger = true;
         GameObject player = GameObject.FindWithTag("Player");
         status = player.GetComponent<PlayerStatus>();
-        score = player.GetComponent<Score>();
+        score = GetComponent<Score>();
         objsInCircle = new List<GameObject>();
 
-        countdown = Time.time + scoreTimer;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -49,25 +50,25 @@ public class CloseAura : MonoBehaviour {
     {
         if (objsInCircle.Count != 0)
         {
-            Debug.Log(objsInCircle.Count);
-            if (objsInCircle[0].GetComponent<Blob>().GetColor().Equals(status.GetColor()))
-            {
-                
-                if (countdown < Time.time)
-                {
-                    score.ScoreIt(CountFilterColor(status.GetColor()), status.GetColor());
-                    countdown = Time.time + scoreTimer;
+            List<GameObject> colorObj = FilterColorGameObject(status.GetColor());
 
-                    foreach(GameObject obj in FilterColorGameObject(status.GetColor()))
+            if(colorObj.Count != 0)
+            {
+                countdown += Time.fixedDeltaTime;
+                if(countdown > scoreTimer)
+                {
+                    score.ScoreIt(colorObj.Count, status.GetColor());
+                    foreach(GameObject obj in colorObj)
                     {
-                        Destroy(obj);
+                        obj.transform.position = new Vector2(-38, 0);
+                        obj.SetActive(false);
                     }
+                    countdown = 0f;
                 }
             }
             else
             {
-                countdown = 0f;
-                objsInCircle.Clear();
+                countdown = 0;
             }
         }
         else
