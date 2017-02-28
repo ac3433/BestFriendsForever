@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Score : MonoBehaviour {
+    [Serializable]
+    public struct ColorScore { public string name; public float multiplier; }
 
-	private struct ColorScore { public string name; public float multiplier; }
-
-    [SerializeField]
-    private ColorScore[] scoreValue;
+    
+    public ColorScore[] scoreValue;
 
     private float score;
 

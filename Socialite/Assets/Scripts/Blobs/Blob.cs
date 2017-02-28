@@ -22,12 +22,14 @@ public class Blob : MonoBehaviour {
 
     private Rigidbody2D rb;
 
+    private float countdown;
+
 	void Start () {
         GameObject player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         playerStatus = player.GetComponent<PlayerStatus>();
         targetCharacter = player.GetComponent<Rigidbody2D>();
-
+        countdown = 5;
         blob = new AbstractBlobFactory().GetBlob(blobColor.ToString());
 	}
 	
@@ -41,6 +43,19 @@ public class Blob : MonoBehaviour {
 
         Vector2 velocity = blob.MovePos(rb.position, targetCharacter.position, playerStatus.GetColor());
         rb.MovePosition( velocity );
+
+        //if(blob.ForceAway)
+        //{
+        //    if (countdown < 0)
+        //    {
+        //        blob.ForceAway = false;
+        //        countdown = 5;
+        //    }
+        //    else
+        //        countdown -= Time.fixedDeltaTime * 5;
+
+        //}
+
     }
 
 
@@ -77,5 +92,10 @@ public class Blob : MonoBehaviour {
             return Color.clear;
 
     }
+
+    //public void ForceAway(bool away)
+    //{
+    //    blob.ForceAway = away;
+    //}
 
 }

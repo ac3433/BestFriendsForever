@@ -4,7 +4,7 @@ using System;
 
 public class GreenBlob : AbstractBlob
 {
-    private CloseAura close;
+    private AcquaintanceAura close;
 
     private int assignedTarget = -1;
     private int knownTargets = 0;
@@ -15,6 +15,10 @@ public class GreenBlob : AbstractBlob
 
     public override Vector2 MovePos(Vector2 currentPos, Vector2 targetPos, Color targetColor)
     {
+        //if(ForceAway)
+        //{
+        //    return MoveAway(currentPos, targetPos);
+        //}
         //like
         if (targetColor.Equals(Color.green))
         {
@@ -26,21 +30,24 @@ public class GreenBlob : AbstractBlob
         }
         else if(targetColor.Equals(Color.blue))
         {
-            if(assignedTarget < 0 || knownTargets != close.GetGameObjectsCount())
+            if((assignedTarget < 0 || knownTargets != close.CountFilterColor(BlobColor)) && close.CountFilterColor(BlobColor) != 0)
             {
-                assignedTarget = UnityEngine.Random.Range(0, close.GetGameObjectsCount());
-                knownTargets = close.GetGameObjectsCount();
+                assignedTarget = UnityEngine.Random.Range(0, close.CountFilterColor(BlobColor));
+                knownTargets = close.CountFilterColor(BlobColor);
             }
 
-            Vector2 newtargetPos = close.GetGameObjectInCircle(assignedTarget).transform.position;
+            if (close.GetGameObjectsCount() != 0)
+            {
+                Vector2 newtargetPos = close.GetFilterObj(BlobColor, assignedTarget).transform.position;
 
-            return MoveTowards(currentPos, newtargetPos);
+                return MoveTowards(currentPos, newtargetPos);
+            }
         }
 
         return currentPos;
     }
 
-    public void AddAuraScript(CloseAura script)
+    public void AddAuraScript(AcquaintanceAura script)
     {
         close = script;
     }

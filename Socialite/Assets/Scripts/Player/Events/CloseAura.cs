@@ -80,7 +80,7 @@ public class CloseAura : MonoBehaviour {
     public List<GameObject> FilterColorGameObject(Color color)
     {
         List<GameObject> o = new List<GameObject>();
-        foreach(GameObject obj in objsInCircle)
+        foreach (GameObject obj in objsInCircle)
         {
             Blob b = obj.GetComponent<Blob>();
             if (!b.GetColor().Equals(color))

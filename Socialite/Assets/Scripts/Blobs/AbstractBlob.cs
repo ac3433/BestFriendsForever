@@ -5,10 +5,11 @@ public abstract class AbstractBlob {
 
     private Color blobColor;
     private float speed;
+    private bool forceAway = false;
 
     public Color BlobColor { get { return blobColor; } set { blobColor = value; } }
     public float Speed { get { return speed; } set { speed = value; } }
-
+    public bool ForceAway { get { return forceAway; } set { forceAway = value; } }
     public AbstractBlob(Color blobColor)
     {
         this.blobColor = blobColor;
